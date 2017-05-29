@@ -1,0 +1,33 @@
+<!doctype html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<br><br>
+<h1 align="center">Search Airports</h1>
+<br><br>
+<select name="country" id="country" class="form-control input-lg" style="width: 28%; margin: 0 auto;">
+{% if countries %}
+<option value="">--Select Country--</option>
+{% for country in countries %}
+  <option value="{{country}}">{{country}}</option>       
+{% endfor %}
+</select>
+{% endif %}
+<br><br>
+<input type="text" name="airport" id="airport" class="form-control input-lg" style="width: 28%;margin: 0 auto;" placeholder="Type Airport name" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+<link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+<script type="text/javascript">
+$("#country").change(function () {
+   var country = $('#country').val();
+   $.ajax({
+	  type: "GET",
+	  url: "/get_airport_names",
+	  data: { param: country}
+	}).done(function( data ) {
+	   $('#airport').autocomplete({
+                source: data.json_list,
+                minLength: 2
+            });
+	});
+});
+</script>
