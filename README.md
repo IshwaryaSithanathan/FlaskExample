@@ -7,6 +7,10 @@ Selecting the country to display the available airports.
 MongoDB
 
 # Run the server 
-1. export FLASK_APP=airportSearch.py
+1. export FLASK_APP=AirportSearch.py
 2. flask run
+
+# Run test cases
+1. python AirportSearchTest.py
+
 
